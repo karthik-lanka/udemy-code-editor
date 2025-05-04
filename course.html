@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Course - LearnX</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.33.0/min/vs/loader.js"></script>
+</head>
+
+<body class="bg-gray-900 text-gray-100 font-sans">
+  <!-- 🔵 Header -->
+  <header class="w-full bg-gray-800 px-6 py-4 flex justify-between items-center shadow-md border-b border-gray-700 sticky top-0 z-50">
+    <div class="flex items-center gap-4">
+      <a href="index.html" class="text-2xl font-bold text-indigo-400 hover:text-indigo-300 flex items-center gap-2">
+        <i class="fas fa-code"></i>
+        LearnX
+      </a>
+      <div class="flex items-center gap-2">
+        <span class="text-gray-400" id="courseTitle">Python Bootcamp</span>
+        <span class="text-xs bg-indigo-500 text-white px-2 py-1 rounded">Beginner</span>
+      </div>
+    </div>
+    <div class="flex items-center gap-4">
+      <button class="text-gray-300 hover:text-white flex items-center gap-2" onclick="window.location.href='index.html'">
+        <i class="fas fa-arrow-left"></i>
+        Back to Courses
+      </button>
+    </div>
+  </header>
+
+  <!-- 🧩 Main Layout -->
+  <div class="flex h-[calc(100vh-72px)]">
+    <!-- 🟪 Left Side: 65% Width -->
+    <div class="w-[65%] flex flex-col bg-gradient-to-br from-gray-800 via-gray-900 to-black shadow-lg" id="leftPanel">
+      <!-- 🎥 Video Section: 65% Height -->
+      <div class="h-[65%] bg-black relative border-b border-gray-700 group" id="videoSection">
+        <video controls class="w-full h-full object-cover">
+          <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
+          Your browser does not support video.
+        </video>
+        <div class="absolute top-2 left-2 bg-indigo-500 text-white text-xs px-3 py-1 rounded shadow flex items-center gap-2">
+          <i class="fas fa-circle text-red-500 animate-pulse"></i>
+          <span id="currentLesson">Python Basics</span>
+        </div>
+        <div class="absolute bottom-2 right-2 bg-black/50 text-white text-xs px-3 py-1 rounded flex items-center gap-2">
+          <i class="fas fa-clock"></i>
+          <span>12:34</span>
+        </div>
+      </div>
+
+      <!-- 🧠 Code Editor Section: 35% -->
+      <div class="flex-1 p-5 overflow-hidden">
+        <div class="flex justify-between items-center mb-3">
+          <h2 class="text-xl font-semibold text-white flex items-center gap-2">
+            <i class="fas fa-code"></i>
+            Try the Code Yourself
+          </h2>
+        </div>
+        <div class="flex items-center gap-2 mb-4">
+          <div class="flex items-center gap-2">
+            <select id="languageSelect" class="bg-gray-800 text-white px-3 py-1 rounded border border-gray-700">
+              <option value="python">Python</option>
+              <option value="javascript">JavaScript</option>
+              <option value="typescript">TypeScript</option>
+              <option value="java">Java</option>
+            </select>
+            <button class="bg-gray-800 text-white p-2 rounded hover:bg-gray-700" title="Reset Code">
+              <i class="fas fa-redo"></i>
+            </button>
+          </div>
+          <button id="aiReviewBtn" class="bg-indigo-600 text-white py-2 px-5 rounded hover:bg-indigo-700 transition shadow flex items-center gap-2">
+            <i class="fas fa-robot"></i>
+            Get AI Review
+          </button>
+          <button id="verifyBtn" class="bg-green-600 text-white py-2 px-5 rounded hover:bg-green-700 transition shadow flex items-center gap-2">
+            <i class="fas fa-check"></i>
+            Verify Code
+          </button>
+          <button id="runBtn" class="bg-blue-600 text-white py-2 px-5 rounded hover:bg-blue-700 transition shadow flex items-center gap-2">
+            <i class="fas fa-play"></i>
+            Run Code
+          </button>
+        </div>
+        <div id="editor" class="border border-gray-700 rounded shadow-md h-[250px] mb-5"></div>
+        <div class="mt-4 p-4 bg-gray-800 border border-gray-700 rounded max-h-[120px] overflow-y-auto text-sm">
+          <div class="flex items-center justify-between mb-2">
+            <h3 class="font-semibold text-indigo-400 flex items-center gap-2">
+              <i class="fas fa-comment-dots"></i>
+              AI Review
+            </h3>
+            <div class="flex gap-2">
+              <button class="text-gray-400 hover:text-white" title="Copy Feedback">
+                <i class="fas fa-copy"></i>
+              </button>
+              <button class="text-gray-400 hover:text-white" title="Clear Feedback">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </div>
+          <pre id="aiReviewText" class="text-gray-200 whitespace-pre-wrap">Write some code and click "Get AI Review" for feedback</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- 🟦 Right Sidebar: 35% Width -->
+    <aside class="w-[35%] p-5 bg-gray-950 text-white overflow-y-auto shadow-inner border-l border-gray-800 flex flex-col">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-2xl font-bold text-indigo-300 flex items-center gap-2">
+          <i class="fas fa-book"></i>
+          Course Contents
+        </h2>
+        <div class="flex items-center gap-2">
+          <button class="text-gray-400 hover:text-white" title="Collapse All">
+            <i class="fas fa-compress-alt"></i>
+          </button>
+          <button class="text-gray-400 hover:text-white" title="Expand All">
+            <i class="fas fa-expand-alt"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2 mb-4 p-2 bg-gray-800 rounded">
+        <i class="fas fa-search text-gray-400"></i>
+        <input type="text" placeholder="Search lessons..." class="bg-transparent border-none focus:outline-none text-white w-full">
+      </div>
+
+      <ul id="courseList" class="space-y-3 mb-6">
+        <!-- These will be dynamically generated by script.js, but here is a static fallback for 10 lessons -->
+        <li class="course-item bg-gray-800 hover:bg-indigo-700 p-3 rounded cursor-pointer flex items-center gap-2 transition group" data-course="intro">
+          <div class="w-8 h-8 rounded-full bg-indigo-500 flex items-center justify-center">
+            <i class="fas fa-play text-white text-sm"></i>
+          </div>
+          <div class="flex-1">
+            <div class="font-medium">1. Introduction</div>
+            <div class="text-xs text-gray-400">10:00</div>
+          </div>
+          <i class="fas fa-lock text-gray-500 group-hover:text-white"></i>
+        </li>
+        <li class="course-item bg-gray-800 hover:bg-indigo-700 p-3 rounded cursor-pointer flex items-center gap-2 transition group" data-course="jsx">
+          <div class="w-8 h-8 rounded-full bg-indigo-500 flex items-center justify-center">
+            <i class="fas fa-play text-white text-sm"></i>
+          </div>
+          <div class="flex-1">
+            <div class="font-medium">2. JSX and Rendering</div>
+            <div class="text-xs text-gray-400">12:00</div>
+          </div>
+          <i class="fas fa-lock text-gray-500 group-hover:text-white"></i>
+        </li>
+        <li class="course-item bg-gray-800 hover:bg-indigo-700 p-3 rounded cursor-pointer flex items-center gap-2 transition group" data-course="components">
+          <div class="w-8 h-8 rounded-full bg-indigo-500 flex items-center justify-center">
+            <i class="fas fa-play text-white text-sm"></i>
+          </div>
+          <div class="flex-1">
+            <div class="font-medium">3. Components and Props</div>
+            <div class="text-xs text-gray-400">15:00</div>
+          </div>
+          <i class="fas fa-lock text-gray-500 group-hover:text-white"></i>
+        </li>
+        <li class="course-item bg-gray-800 hover:bg-indigo-700 p-3 rounded cursor-pointer flex items-center gap-2 transition group" data-course="state">
+          <div class="w-8 h-8 rounded-full bg-indigo-500 flex items-center justify-center">
+            <i class="fas fa-play text-white text-sm"></i>
+          </div>
+          <div class="flex-1">
+            <div class="font-medium">4. State and Lifecycle</div>
+            <div class="text-xs text-gray-400">14:00</div>
+          </div>
+          <i class="fas fa-lock text-gray-500 group-hover:text-white"></i>
+        </li>
+        <li class="course-item bg-gray-800 hover:bg-indigo-700 p-3 rounded cursor-pointer flex items-center gap-2 transition group" data-course="events">
+          <div class="w-8 h-8 rounded-full bg-indigo-500 flex items-center justify-center">
+            <i class="fas fa-play text-white text-sm"></i>
+          </div>
+          <div class="flex-1">
+            <div class="font-medium">5. Handling Events</div>
+            <div class="text-xs text-gray-400">11:00</div>
+          </div>
+          <i class="fas fa-lock text-gray-500 group-hover:text-white"></i>
+        </li>
+        <li class="course-item bg-gray-800 hover:bg-indigo-700 p-3 rounded cursor-pointer flex items-center gap-2 transition group" data-course="hooks">
+          <div class="w-8 h-8 rounded-full bg-indigo-500 flex items-center justify-center">
+            <i class="fas fa-play text-white text-sm"></i>
+          </div>
+          <div class="flex-1">
+            <div class="font-medium">6. React Hooks</div>
+            <div class="text-xs text-gray-400">13:00</div>
+          </div>
+          <i class="fas fa-lock text-gray-500 group-hover:text-white"></i>
+        </li>
+        <li class="course-item bg-gray-800 hover:bg-indigo-700 p-3 rounded cursor-pointer flex items-center gap-2 transition group" data-course="router">
+          <div class="w-8 h-8 rounded-full bg-indigo-500 flex items-center justify-center">
+            <i class="fas fa-play text-white text-sm"></i>
+          </div>
+          <div class="flex-1">
+            <div class="font-medium">7. React Router</div>
+            <div class="text-xs text-gray-400">12:00</div>
+          </div>
+          <i class="fas fa-lock text-gray-500 group-hover:text-white"></i>
+        </li>
+        <li class="course-item bg-gray-800 hover:bg-indigo-700 p-3 rounded cursor-pointer flex items-center gap-2 transition group" data-course="context">
+          <div class="w-8 h-8 rounded-full bg-indigo-500 flex items-center justify-center">
+            <i class="fas fa-play text-white text-sm"></i>
+          </div>
+          <div class="flex-1">
+            <div class="font-medium">8. Context API</div>
+            <div class="text-xs text-gray-400">10:00</div>
+          </div>
+          <i class="fas fa-lock text-gray-500 group-hover:text-white"></i>
+        </li>
+        <li class="course-item bg-gray-800 hover:bg-indigo-700 p-3 rounded cursor-pointer flex items-center gap-2 transition group" data-course="redux">
+          <div class="w-8 h-8 rounded-full bg-indigo-500 flex items-center justify-center">
+            <i class="fas fa-play text-white text-sm"></i>
+          </div>
+          <div class="flex-1">
+            <div class="font-medium">9. Redux Basics</div>
+            <div class="text-xs text-gray-400">15:00</div>
+          </div>
+          <i class="fas fa-lock text-gray-500 group-hover:text-white"></i>
+        </li>
+        <li class="course-item bg-gray-800 hover:bg-indigo-700 p-3 rounded cursor-pointer flex items-center gap-2 transition group" data-course="final">
+          <div class="w-8 h-8 rounded-full bg-indigo-500 flex items-center justify-center">
+            <i class="fas fa-play text-white text-sm"></i>
+          </div>
+          <div class="flex-1">
+            <div class="font-medium">10. Final Project</div>
+            <div class="text-xs text-gray-400">20:00</div>
+          </div>
+          <i class="fas fa-lock text-gray-500 group-hover:text-white"></i>
+        </li>
+      </ul>
+
+      <!-- Course Details Section -->
+      <div id="courseDetails" class="bg-gray-800 border border-gray-700 rounded p-4 mb-6 hidden transition-all duration-300">
+        <div class="flex items-center justify-between mb-2">
+          <h3 class="text-lg font-bold text-indigo-400">Lesson Details</h3>
+          <button class="text-gray-400 hover:text-white" title="Close Details">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="text-gray-200"></div>
+      </div>
+
+      <!-- Progress Section -->
+      <div class="bg-gray-800 border border-gray-700 rounded p-4">
+        <h3 class="text-lg font-bold text-indigo-400 mb-2">Course Progress</h3>
+        <div class="w-full bg-gray-700 rounded-full h-2 mb-2">
+          <div class="bg-indigo-500 h-2 rounded-full" style="width: 25%"></div>
+        </div>
+        <div class="flex justify-between text-sm text-gray-400">
+          <span>25% Complete</span>
+          <span>1/4 Lessons</span>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Enhanced Comments & Suggestions Section -->
+  <section class="max-w-2xl mx-auto mt-10 mb-10 p-6 bg-gray-800 rounded-lg shadow-lg border border-gray-700">
+    <div class="flex items-center justify-between mb-4">
+      <h3 class="text-xl font-bold text-indigo-400 flex items-center gap-2">
+        <i class="fas fa-comments"></i> Comments & Suggestions
+      </h3>
+      <span class="text-gray-400 text-sm">Sort by <i class="fas fa-chevron-down"></i></span>
+    </div>
+    <div id="loginPrompt" class="flex items-center gap-2 mb-4">
+      <img src="https://randomuser.me/api/portraits/lego/1.jpg" class="w-10 h-10 rounded-full bg-gray-700" alt="User avatar">
+      <span class="text-gray-400">You must be <a href="#" class="text-pink-400 hover:underline">login</a> to post a comment</span>
+    </div>
+    <form id="commentForm" class="flex flex-col gap-4 mb-6">
+      <textarea id="commentInput" class="w-full p-3 rounded bg-gray-900 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500" rows="3" placeholder="Leave a comment or suggestion..."></textarea>
+      <button type="submit" class="self-end bg-indigo-600 text-white px-6 py-2 rounded hover:bg-indigo-700 font-semibold">Submit</button>
+    </form>
+    <div id="commentsList" class="space-y-6">
+      <!-- Comments will appear here -->
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+  <script>
+  function timeAgo(date) {
+    const now = new Date();
+    const seconds = Math.floor((now - date) / 1000);
+    if (seconds < 60) return `${seconds}s ago`;
+    const minutes = Math.floor(seconds / 60);
+    if (minutes < 60) return `${minutes}m ago`;
+    const hours = Math.floor(minutes / 60);
+    if (hours < 24) return `${hours}h ago`;
+    const days = Math.floor(hours / 24);
+    return `${days}d ago`;
+  }
+  const avatars = [
+    'https://randomuser.me/api/portraits/men/1.jpg',
+    'https://randomuser.me/api/portraits/women/2.jpg',
+    'https://randomuser.me/api/portraits/men/3.jpg',
+    'https://randomuser.me/api/portraits/women/4.jpg',
+    'https://randomuser.me/api/portraits/lego/1.jpg'
+  ];
+  function randomAvatar() {
+    return avatars[Math.floor(Math.random() * avatars.length)];
+  }
+  function randomName() {
+    const names = ['Alex', 'Sam', 'Taylor', 'Jordan', 'Casey', 'Jamie', 'Morgan', 'Riley'];
+    return names[Math.floor(Math.random() * names.length)];
+  }
+  const comments = [];
+  document.getElementById('commentForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const input = document.getElementById('commentInput');
+    const text = input.value.trim();
+    if (!text) return;
+    const comment = {
+      user: randomName(),
+      avatar: randomAvatar(),
+      text,
+      time: new Date(),
+      likes: 0
+    };
+    comments.unshift(comment);
+    renderComments();
+    input.value = '';
+  });
+  function renderComments() {
+    const list = document.getElementById('commentsList');
+    list.innerHTML = '';
+    comments.forEach((c, idx) => {
+      const div = document.createElement('div');
+      div.className = 'flex gap-3 items-start bg-gray-900 p-4 rounded border border-gray-700';
+      div.innerHTML = `
+        <img src="${c.avatar}" class="w-10 h-10 rounded-full bg-gray-700 mt-1" alt="Avatar">
+        <div class="flex-1">
+          <div class="flex items-center gap-2 mb-1">
+            <span class="font-semibold text-indigo-300">${c.user}</span>
+            <span class="text-xs text-gray-400">${timeAgo(c.time)}</span>
+          </div>
+          <div class="text-gray-200 mb-2">${c.text}</div>
+          <div class="flex items-center gap-4 text-gray-400 text-sm">
+            <button onclick="likeComment(${idx})" class="hover:text-pink-400 flex items-center gap-1"><i class="fas fa-thumbs-up"></i> <span>${c.likes}</span></button>
+            <button class="hover:text-indigo-400 flex items-center gap-1"><i class="fas fa-reply"></i> Reply</button>
+          </div>
+        </div>
+      `;
+      list.appendChild(div);
+    });
+  }
+  window.likeComment = function(idx) {
+    comments[idx].likes++;
+    renderComments();
+  }
+  </script>
+</body>
+</html> 

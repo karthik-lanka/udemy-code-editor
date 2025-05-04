@@ -1,0 +1,70 @@
+/* Scrollbar Styling */
+aside::-webkit-scrollbar {
+    width: 6px;
+}
+aside::-webkit-scrollbar-thumb {
+    background-color: #a0aec0;
+    border-radius: 5px;
+}
+
+#feedbackText::-webkit-scrollbar {
+    width: 6px;
+}
+#feedbackText::-webkit-scrollbar-thumb {
+    background-color: #cbd5e0;
+}
+
+/* Add smooth transitions and highlight for selected course */
+.course-item {
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+.course-item.selected {
+    background: linear-gradient(90deg, #6366f1 0%, #818cf8 100%);
+    color: #fff;
+    box-shadow: 0 2px 8px #6366f1aa;
+}
+#courseDetails {
+    min-height: 80px;
+    transition: opacity 0.3s;
+}
+#editorSection {
+    animation: fadeIn 0.5s;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px);}
+    to { opacity: 1; transform: translateY(0);}
+}
+
+/* Horizontal scroll for courses */
+.horizontal-scroll {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+.horizontal-scroll::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+.horizontal-scroll::-webkit-scrollbar-thumb {
+    background: #6366f1;
+    border-radius: 8px;
+}
+.horizontal-scroll::-webkit-scrollbar-track {
+    background: #1e293b;
+}
+
+/* Forced Colors Mode support */
+@media (forced-colors: active) {
+    .course-item.selected {
+        forced-color-adjust: none;
+        background: CanvasText;
+        color: Canvas;
+    }
+    
+    .horizontal-scroll::-webkit-scrollbar-thumb {
+        background: CanvasText;
+    }
+    
+    .horizontal-scroll::-webkit-scrollbar-track {
+        background: Canvas;
+    }
+}
+  

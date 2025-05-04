@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>LearnX - Interactive Coding Courses</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body class="bg-gray-900 text-gray-100 font-sans">
+  <!-- 🔵 Header -->
+  <header class="w-full bg-gray-800 px-6 py-4 flex justify-between items-center shadow-md border-b border-gray-700 sticky top-0 z-50">
+    <div class="flex items-center gap-4">
+      <h1 class="text-2xl font-bold text-indigo-400">LearnX</h1>
+      <nav class="hidden md:flex gap-6">
+        <a href="#categories" class="text-gray-300 hover:text-white">Categories</a>
+        <a href="#instructors" class="text-gray-300 hover:text-white">Instructors</a>
+        <a href="#courses" class="text-gray-300 hover:text-white">Courses</a>
+      </nav>
+    </div>
+    <div class="flex items-center gap-4">
+      <a href="ai-code-editor.html" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 font-semibold flex items-center gap-2"><i class="fas fa-robot"></i>AI Code Editor</a>
+      <a href="instructors.html" class="bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-700">Become an Instructor</a>
+      <button class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Sign In</button>
+      <button class="bg-white text-gray-900 px-4 py-2 rounded hover:bg-gray-100">Sign Up</button>
+    </div>
+  </header>
+
+  <!-- 🎯 Hero Section -->
+  <section class="bg-gradient-to-r from-indigo-900 to-gray-900 py-16 px-6">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-4xl md:text-5xl font-bold mb-4">Learn to Code with AI</h2>
+      <p class="text-xl text-gray-300 mb-8">Interactive coding courses with real-time AI feedback</p>
+      <div class="flex gap-4">
+        <input type="text" placeholder="Search for courses..." class="flex-1 bg-white/10 text-white px-4 py-3 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500">
+        <button class="bg-indigo-600 text-white px-6 py-3 rounded hover:bg-indigo-700">Search</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 1. Popular Courses (Horizontal Scroll) -->
+  <section id="courses" class="max-w-6xl mx-auto py-12 px-6">
+    <h3 class="text-2xl font-bold mb-8">Popular Courses</h3>
+    <div class="horizontal-scroll flex gap-6 overflow-x-auto pb-4">
+      <!-- Course Card 1 -->
+      <div class="course-card min-w-[320px] bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition">
+        <div class="relative">
+          <img src="https://img-c.udemycdn.com/course/480x270/567828_67d0.jpg" alt="Python Course" class="w-full h-48 object-cover">
+          <div class="absolute top-2 right-2 bg-indigo-500 text-white text-xs px-2 py-1 rounded">Bestseller</div>
+        </div>
+        <div class="p-4">
+          <h4 class="text-lg font-semibold mb-2">Python Programming Bootcamp</h4>
+          <p class="text-gray-400 text-sm mb-4">Learn Python from scratch with interactive coding exercises and AI feedback</p>
+          <div class="flex items-center justify-between">
+            <span class="text-indigo-400 font-semibold">Free</span>
+            <a href="course.html?course=python" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Start Learning</a>
+          </div>
+        </div>
+      </div>
+      <!-- Course Card 2 -->
+      <div class="course-card min-w-[320px] bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition">
+        <div class="relative">
+          <img src="https://img-c.udemycdn.com/course/480x270/851712_fc61_6.jpg" alt="JavaScript Course" class="w-full h-48 object-cover">
+          <div class="absolute top-2 right-2 bg-indigo-500 text-white text-xs px-2 py-1 rounded">New</div>
+        </div>
+        <div class="p-4">
+          <h4 class="text-lg font-semibold mb-2">JavaScript Mastery</h4>
+          <p class="text-gray-400 text-sm mb-4">Master JavaScript with hands-on projects and real-time code review</p>
+          <div class="flex items-center justify-between">
+            <span class="text-indigo-400 font-semibold">Free</span>
+            <a href="course.html?course=javascript" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Start Learning</a>
+          </div>
+        </div>
+      </div>
+      <!-- Course Card 3 -->
+      <div class="course-card min-w-[320px] bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition">
+        <div class="relative">
+          <img src="https://img-c.udemycdn.com/course/480x270/625204_436a_3.jpg" alt="Web Development Course" class="w-full h-48 object-cover">
+          <div class="absolute top-2 right-2 bg-indigo-500 text-white text-xs px-2 py-1 rounded">Popular</div>
+        </div>
+        <div class="p-4">
+          <h4 class="text-lg font-semibold mb-2">Full Stack Web Development</h4>
+          <p class="text-gray-400 text-sm mb-4">Build modern web applications with interactive coding exercises</p>
+          <div class="flex items-center justify-between">
+            <span class="text-indigo-400 font-semibold">Free</span>
+            <a href="course.html?course=webdev" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Start Learning</a>
+          </div>
+        </div>
+      </div>
+      <!-- Course Card 4 -->
+      <div class="course-card min-w-[320px] bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition">
+        <div class="relative">
+          <img src="https://img-c.udemycdn.com/course/480x270/1565838_e54e_16.jpg" alt="React Course" class="w-full h-48 object-cover">
+          <div class="absolute top-2 right-2 bg-indigo-500 text-white text-xs px-2 py-1 rounded">Trending</div>
+        </div>
+        <div class="p-4">
+          <h4 class="text-lg font-semibold mb-2">React - The Complete Guide</h4>
+          <p class="text-gray-400 text-sm mb-4">Become a React developer with real-world projects and AI-powered feedback</p>
+          <div class="flex items-center justify-between">
+            <span class="text-indigo-400 font-semibold">Free</span>
+            <a href="course.html?course=react" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Start Learning</a>
+          </div>
+        </div>
+      </div>
+      <!-- Course Card 5 -->
+      <div class="course-card min-w-[320px] bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition">
+        <div class="relative">
+          <img src="https://img-c.udemycdn.com/course/480x270/567828_67d0.jpg" alt="Data Science Course" class="w-full h-48 object-cover">
+          <div class="absolute top-2 right-2 bg-indigo-500 text-white text-xs px-2 py-1 rounded">Hot</div>
+        </div>
+        <div class="p-4">
+          <h4 class="text-lg font-semibold mb-2">Data Science & Machine Learning</h4>
+          <p class="text-gray-400 text-sm mb-4">Learn data science, ML, and AI with hands-on projects and code review</p>
+          <div class="flex items-center justify-between">
+            <span class="text-indigo-400 font-semibold">Free</span>
+            <a href="course.html?course=datascience" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Start Learning</a>
+          </div>
+        </div>
+      </div>
+      <!-- Course Card 6 -->
+      <div class="course-card min-w-[320px] bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition">
+        <div class="relative">
+          <img src="https://img-c.udemycdn.com/course/480x270/2196488_8fc7_10.jpg" alt="Java Course" class="w-full h-48 object-cover">
+          <div class="absolute top-2 right-2 bg-indigo-500 text-white text-xs px-2 py-1 rounded">Classic</div>
+        </div>
+        <div class="p-4">
+          <h4 class="text-lg font-semibold mb-2">Java Programming Masterclass</h4>
+          <p class="text-gray-400 text-sm mb-4">Master Java programming with real-world projects and AI feedback</p>
+          <div class="flex items-center justify-between">
+            <span class="text-indigo-400 font-semibold">Free</span>
+            <a href="course.html?course=java" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Start Learning</a>
+          </div>
+        </div>
+      </div>
+      <!-- Course Card 7 -->
+      <div class="course-card min-w-[320px] bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition">
+        <div class="relative">
+          <img src="https://img-c.udemycdn.com/course/480x270/1561458_7f3b_2.jpg" alt="C++ Course" class="w-full h-48 object-cover">
+          <div class="absolute top-2 right-2 bg-indigo-500 text-white text-xs px-2 py-1 rounded">New</div>
+        </div>
+        <div class="p-4">
+          <h4 class="text-lg font-semibold mb-2">C++ Fundamentals</h4>
+          <p class="text-gray-400 text-sm mb-4">Learn C++ from basics to advanced with interactive coding and AI review</p>
+          <div class="flex items-center justify-between">
+            <span class="text-indigo-400 font-semibold">Free</span>
+            <a href="course.html?course=cpp" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Start Learning</a>
+          </div>
+        </div>
+      </div>
+      <!-- Course Card 8 -->
+      <div class="course-card min-w-[320px] bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition">
+        <div class="relative">
+          <img src="https://img-c.udemycdn.com/course/480x270/1463348_52a4_2.jpg" alt="SQL Course" class="w-full h-48 object-cover">
+          <div class="absolute top-2 right-2 bg-indigo-500 text-white text-xs px-2 py-1 rounded">Popular</div>
+        </div>
+        <div class="p-4">
+          <h4 class="text-lg font-semibold mb-2">SQL & Databases</h4>
+          <p class="text-gray-400 text-sm mb-4">Master SQL and database design with hands-on exercises and AI feedback</p>
+          <div class="flex items-center justify-between">
+            <span class="text-indigo-400 font-semibold">Free</span>
+            <a href="course.html?course=sql" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Start Learning</a>
+          </div>
+        </div>
+      </div>
+      <!-- Course Card 9 -->
+      <div class="course-card min-w-[320px] bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition">
+        <div class="relative">
+          <img src="https://img-c.udemycdn.com/course/480x270/567828_67d0.jpg" alt="Cybersecurity Course" class="w-full h-48 object-cover">
+          <div class="absolute top-2 right-2 bg-indigo-500 text-white text-xs px-2 py-1 rounded">Hot</div>
+        </div>
+        <div class="p-4">
+          <h4 class="text-lg font-semibold mb-2">Cybersecurity Essentials</h4>
+          <p class="text-gray-400 text-sm mb-4">Learn cybersecurity fundamentals and best practices with real-world labs</p>
+          <div class="flex items-center justify-between">
+            <span class="text-indigo-400 font-semibold">Free</span>
+            <a href="course.html?course=cybersecurity" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Start Learning</a>
+          </div>
+        </div>
+      </div>
+      <!-- Course Card 10 -->
+      <div class="course-card min-w-[320px] bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition">
+        <div class="relative">
+          <img src="https://img-c.udemycdn.com/course/480x270/2196488_8fc7_10.jpg" alt="Cloud Computing Course" class="w-full h-48 object-cover">
+          <div class="absolute top-2 right-2 bg-indigo-500 text-white text-xs px-2 py-1 rounded">Trending</div>
+        </div>
+        <div class="p-4">
+          <h4 class="text-lg font-semibold mb-2">Cloud Computing & AWS</h4>
+          <p class="text-gray-400 text-sm mb-4">Get started with cloud computing, AWS, and DevOps with hands-on labs</p>
+          <div class="flex items-center justify-between">
+            <span class="text-indigo-400 font-semibold">Free</span>
+            <a href="course.html?course=cloud" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Start Learning</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Categories -->
+  <section id="categories" class="max-w-6xl mx-auto py-12 px-6">
+    <h3 class="text-2xl font-bold mb-8">Categories</h3>
+    <div id="categoryFilters" class="flex flex-wrap gap-4 mb-8">
+      <div class="bg-gray-800 rounded-lg p-6 flex flex-col items-center w-48">
+        <span class="text-4xl mb-2">💻</span>
+        <span class="font-semibold">Programming</span>
+      </div>
+      <div class="bg-gray-800 rounded-lg p-6 flex flex-col items-center w-48">
+        <span class="text-4xl mb-2">🌐</span>
+        <span class="font-semibold">Web Development</span>
+      </div>
+      <div class="bg-gray-800 rounded-lg p-6 flex flex-col items-center w-48">
+        <span class="text-4xl mb-2">📊</span>
+        <span class="font-semibold">Data Science</span>
+      </div>
+      <div class="bg-gray-800 rounded-lg p-6 flex flex-col items-center w-48">
+        <span class="text-4xl mb-2">🔒</span>
+        <span class="font-semibold">Cybersecurity</span>
+      </div>
+      <div class="bg-gray-800 rounded-lg p-6 flex flex-col items-center w-48">
+        <span class="text-4xl mb-2">☁️</span>
+        <span class="font-semibold">Cloud Computing</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Top Instructors -->
+  <section id="instructors" class="max-w-6xl mx-auto py-12 px-6">
+    <h3 class="text-2xl font-bold mb-8">Top Instructors</h3>
+    <div id="instructorGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="bg-gray-800 rounded-lg p-4 flex items-center gap-4">
+        <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="John Smith" class="w-16 h-16 rounded-full">
+        <div>
+          <h4 class="font-semibold">John Smith</h4>
+          <div class="flex items-center gap-2 text-sm text-gray-400">
+            <span>⭐ 4.8</span>
+            <span>👥 15,000 students</span>
+          </div>
+        </div>
+      </div>
+      <div class="bg-gray-800 rounded-lg p-4 flex items-center gap-4">
+        <img src="https://randomuser.me/api/portraits/women/2.jpg" alt="Sarah Johnson" class="w-16 h-16 rounded-full">
+        <div>
+          <h4 class="font-semibold">Sarah Johnson</h4>
+          <div class="flex items-center gap-2 text-sm text-gray-400">
+            <span>⭐ 4.9</span>
+            <span>👥 20,000 students</span>
+          </div>
+        </div>
+      </div>
+      <div class="bg-gray-800 rounded-lg p-4 flex items-center gap-4">
+        <img src="https://randomuser.me/api/portraits/men/3.jpg" alt="Mike Wilson" class="w-16 h-16 rounded-full">
+        <div>
+          <h4 class="font-semibold">Mike Wilson</h4>
+          <div class="flex items-center gap-2 text-sm text-gray-400">
+            <span>⭐ 4.7</span>
+            <span>👥 18,000 students</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 📱 Footer -->
+  <footer class="bg-gray-800 py-8 px-6 mt-12">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div>
+          <h5 class="text-lg font-semibold mb-4">LearnX</h5>
+          <p class="text-gray-400">Interactive coding courses with AI-powered feedback</p>
+        </div>
+        <div>
+          <h5 class="text-lg font-semibold mb-4">Categories</h5>
+          <ul class="space-y-2">
+            <li><a href="programming.html" class="text-gray-400 hover:text-white">Programming</a></li>
+            <li><a href="web-development.html" class="text-gray-400 hover:text-white">Web Development</a></li>
+            <li><a href="data-science.html" class="text-gray-400 hover:text-white">Data Science</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5 class="text-lg font-semibold mb-4">Company</h5>
+          <ul class="space-y-2">
+            <li><a href="about.html" class="text-gray-400 hover:text-white">About</a></li>
+            <li><a href="careers.html" class="text-gray-400 hover:text-white">Careers</a></li>
+            <li><a href="contact.html" class="text-gray-400 hover:text-white">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5 class="text-lg font-semibold mb-4">Legal</h5>
+          <ul class="space-y-2">
+            <li><a href="terms.html" class="text-gray-400 hover:text-white">Terms</a></li>
+            <li><a href="privacy.html" class="text-gray-400 hover:text-white">Privacy</a></li>
+            <li><a href="cookie-policy.html" class="text-gray-400 hover:text-white">Cookie Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+        <p>© 2024 LearnX. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

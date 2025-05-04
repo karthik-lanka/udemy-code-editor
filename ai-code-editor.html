@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AI Code Editor - LearnX</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.33.0/min/vs/loader.js"></script>
+</head>
+<body class="bg-gray-900 text-gray-100 font-sans min-h-screen">
+  <header class="w-full bg-gray-800 px-6 py-4 flex justify-between items-center shadow-md border-b border-gray-700 sticky top-0 z-50">
+    <a href="index.html" class="text-2xl font-bold text-indigo-400 hover:text-indigo-300 flex items-center gap-2">
+      <i class="fas fa-code"></i> LearnX
+    </a>
+    <span class="text-gray-400 font-semibold">AI Code Editor</span>
+  </header>
+  <main class="max-w-4xl mx-auto py-12 px-4">
+    <div class="bg-gray-800 rounded-lg shadow-lg p-8 border border-gray-700">
+      <h2 class="text-2xl font-bold text-indigo-400 mb-6 flex items-center gap-2">
+        <i class="fas fa-robot"></i> AI Code Editor
+      </h2>
+      <div class="mb-6">
+        <label for="aiQuestion" class="block text-gray-300 mb-2 font-semibold">Ask AI about your code or programming:</label>
+        <div class="flex gap-2">
+          <input id="aiQuestion" type="text" class="flex-1 px-4 py-2 rounded bg-gray-900 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="e.g. How do I reverse a string in Python?">
+          <button id="askAiBtn" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 font-semibold flex items-center gap-2"><i class="fas fa-paper-plane"></i>Ask AI</button>
+        </div>
+      </div>
+      <div class="mb-6">
+        <label class="block text-gray-300 mb-2 font-semibold">Code Editor:</label>
+        <div id="editor" class="border border-gray-700 rounded shadow-md h-[300px] mb-4"></div>
+      </div>
+      <div class="bg-gray-900 border border-gray-700 rounded p-4 min-h-[80px]">
+        <h3 class="font-semibold text-indigo-400 mb-2 flex items-center gap-2"><i class="fas fa-comment-dots"></i> AI Response</h3>
+        <pre id="aiResponse" class="text-gray-200 whitespace-pre-wrap">Ask a question or type code and click "Ask AI" to get help.</pre>
+      </div>
+    </div>
+  </main>
+  <script>
+    require.config({ paths: { vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.33.0/min/vs' } });
+    let editor;
+    document.addEventListener('DOMContentLoaded', function () {
+      require(['vs/editor/editor.main'], function () {
+        editor = monaco.editor.create(document.getElementById('editor'), {
+          value: '# Write your code here\n',
+          language: 'python',
+          theme: 'vs-dark',
+          automaticLayout: true,
+          minimap: { enabled: false },
+          fontSize: 14,
+          lineNumbers: 'on',
+          roundedSelection: false,
+          scrollBeyondLastLine: false,
+          readOnly: false,
+          cursorStyle: 'line',
+        });
+        document.getElementById('askAiBtn').addEventListener('click', async function() {
+          const question = document.getElementById('aiQuestion').value.trim();
+          const code = editor.getValue();
+          if (!question && !code) {
+            document.getElementById('aiResponse').textContent = 'Please enter a question or some code.';
+            return;
+          }
+          document.getElementById('aiResponse').textContent = 'Thinking...';
+          try {
+            const response = await fetch('http://localhost:3000/api/review', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ code: code || question, language: 'python' })
+            });
+            const data = await response.json();
+            document.getElementById('aiResponse').textContent = data.review || 'No response from AI.';
+          } catch (error) {
+            document.getElementById('aiResponse').textContent = 'Error getting AI response. Please try again.';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html> 
